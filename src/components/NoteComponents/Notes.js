@@ -1,4 +1,4 @@
-import { React, useState } from 'react'
+import { React, useState, useEffect } from 'react'
 import "../css/Note.css";
 import CreateNote from './CreateNote';
 import Note from "./Note"
@@ -8,6 +8,16 @@ function Notes() {
     const [notes, setNotes] = useState([]);
     const [inputText, setInputText] = useState("")
 
+    useEffect(() => {
+        localStorage.setItem("Notes", JSON.stringify(notes));
+    }, [notes])
+
+    useEffect(() => {
+        const data = JSON.parse(localStorage.getItem("Notes"));
+        if(data) {
+            setNotes(data);
+        }
+    }, [])
 
     // get text and store in the state
     const textHandler = (e) => {
