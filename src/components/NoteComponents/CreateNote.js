@@ -1,4 +1,5 @@
 import React from 'react'
+import { LinearProgress } from '@mui/material';
 
 const CHAR_LIMIT = 100;
 
@@ -18,6 +19,11 @@ function CreateNote({ textHandler, saveHandler, inputText }) {
                 <span className="label">{charLeft} characters left</span>
                 <button className="note__save" onClick={saveHandler}>Save</button>
             </div>
+            <LinearProgress
+                className='char__progress'
+                variant="determinate"
+                value={charLeft}
+            />
         </div>
     )
 }
